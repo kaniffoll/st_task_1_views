@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.st_task_1_views.utils.InitialsUtil" />
+
+        <variable
+            name="post"
+            type="com.example.st_task_1_views.data.dataclasses.Post" />
+    </data>
+
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".UserScreen">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/padding_medium"
+                android:layout_marginBottom="@dimen/padding_large_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <include
+                            android:id="@+id/Avatar"
+                            layout="@layout/avatar_view"
+                            android:layout_width="@dimen/avatar_small"
+                            android:layout_height="@dimen/avatar_small"
+                            android:layout_margin="@dimen/padding_small"
+                            app:username="@{InitialsUtil.initials(post.username)}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@{post.username}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/padding_large"
+                        android:layout_marginVertical="@dimen/padding_small"
+                        android:text="@{post.title}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_small" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/padding_large"
+                        android:text="@{post.description}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:name="com.example.st_task_1_views.CommentsSection"
+                        android:id="@+id/fragmentComments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                    </androidx.fragment.app.FragmentContainerView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

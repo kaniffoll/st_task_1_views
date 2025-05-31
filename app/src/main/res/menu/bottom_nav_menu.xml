@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Posts"
+        android:title="@string/posts"
+        android:icon="@drawable/nav_bar_item_posts"/>
+    <item
+        android:id="@+id/Photos"
+        android:title="@string/photos"
+        android:icon="@drawable/nav_bar_item_photos"/>
+    <item
+        android:id="@+id/Todos"
+        android:title="@string/todos"
+        android:icon="@drawable/nav_bar_item_todos"/>
+    <item
+        android:id="@+id/Users"
+        android:title="@string/users"
+        android:icon="@drawable/nav_bar_item_users"/>
+
+</menu>
