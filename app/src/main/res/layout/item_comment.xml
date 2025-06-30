@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="author"
+            type="String" />
+        <variable
+            name="message"
+            type="String" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_card"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_small">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{author}"
+            android:layout_marginHorizontal="@dimen/padding_medium"
+            android:layout_marginBottom="@dimen/padding_mini"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_comment"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{message}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_standard"
+            android:layout_marginHorizontal="@dimen/padding_medium"/>
+    </LinearLayout>
+</layout>

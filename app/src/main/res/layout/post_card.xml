@@ -7,6 +7,9 @@
         <variable
             name="post"
             type="com.example.st_task_1_views.data.dataclasses.Post" />
+        <variable
+            name="handler"
+            type="com.example.st_task_1_views.handlers.PostHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,13 +77,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
+                        android:id="@+id/postCardLikeButton"
                         android:layout_width="@dimen/heart_size"
                         android:layout_height="@dimen/heart_size"
                         android:layout_gravity="end"
                         android:layout_marginHorizontal="@dimen/padding_small"
                         android:layout_marginBottom="@dimen/padding_mini_2"
                         android:contentDescription="@string/heart_icon_description"
-                        android:src="@drawable/favorite"
+                        android:src='@{post.isLiked ? @drawable/favorite_filled : @drawable/favorite}'
+                        android:onClick="@{() -> handler.onLikeClicked(post)}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

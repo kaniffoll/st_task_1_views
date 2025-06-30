@@ -1,15 +1,19 @@
 package com.example.st_task_1_views.data
 
+import com.example.st_task_1_views.R
+import com.example.st_task_1_views.data.dataclasses.Album
 import com.example.st_task_1_views.data.dataclasses.Comment
+import com.example.st_task_1_views.data.dataclasses.Photo
 import com.example.st_task_1_views.data.dataclasses.Post
 import com.example.st_task_1_views.data.dataclasses.User
 
 val postsList: List<Post> = listOf(
-    Post(username = "User 1", title = "Title", description = "Description"),
-    Post(username = "User 2", title = "Title", description = "Description"),
-    Post(username = "User 3", title = "Title", description = "Description"),
-    Post(username = "User 4", title = "Title", description = "Description"),
+    Post(id = 0, username = "User 1", title = "Title", description = "Description"),
+    Post(id = 1, username = "User 2", title = "Title", description = "Description"),
+    Post(id = 2, username = "User 3", title = "Title", description = "Description"),
+    Post(id = 3, username = "User 4", title = "Title", description = "Description"),
     Post(
+        id = 4,
         username = "User 5",
         title = "Title",
         description = "Description",
@@ -23,30 +27,36 @@ val postsList: List<Post> = listOf(
     )
 )
 
-//val albumsList: List<Album> = listOf(
-//    Album(
-//        name = "Album 1", photos = listOf(
-//            Pair("User 1", DrawRes(R.drawable.img_1)),
-//            Pair("User 3", DrawRes(R.drawable.img_2)),
-//            Pair("User 2", DrawRes(R.drawable.img_3)),
-//        )
-//    ),
-//    Album(
-//        name = "Album 2", photos = listOf(
-//            Pair("User 1", DrawRes(R.drawable.img_4)),
-//            Pair("User 1", DrawRes(R.drawable.img_5)),
-//            Pair("User 4", DrawRes(R.drawable.img_6)),
-//        )
-//    ),
-//    Album(
-//        name = "Album 3", photos = listOf(
-//            Pair("User 10", DrawRes(R.drawable.img_7)),
-//            Pair("User 11", DrawRes(R.drawable.img_8)),
-//            Pair("User 7", DrawRes(R.drawable.img_9)),
-//            Pair("User 9", DrawRes(R.drawable.img_10)),
-//        )
-//    )
-//)
+val albumsList: List<Album> = listOf(
+    Album(
+        id = 0,
+        title = "Album 1",
+        photos = mutableListOf(
+            Photo("User 1", R.drawable.img_1),
+            Photo("User 3", R.drawable.img_2),
+            Photo("User 2", R.drawable.img_3),
+        )
+    ),
+    Album(
+        id = 1,
+        title = "Album 2",
+        photos = mutableListOf(
+            Photo("User 1", R.drawable.img_4),
+            Photo("User 1", R.drawable.img_5),
+            Photo("User 4", R.drawable.img_6),
+        )
+    ),
+    Album(
+        id = 2,
+        title = "Album 3",
+        photos = mutableListOf(
+            Photo("User 5", R.drawable.img_7),
+            Photo("User 3", R.drawable.img_8),
+            Photo("User 2", R.drawable.img_9),
+            Photo("User 1", R.drawable.img_10)
+        )
+    )
+)
 
 const val address = "Воронеж, улица Мира 105"
 const val phone = "8 900 100 20 30"

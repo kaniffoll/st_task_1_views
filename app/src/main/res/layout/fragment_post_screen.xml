@@ -9,23 +9,29 @@
         <variable
             name="post"
             type="com.example.st_task_1_views.data.dataclasses.Post" />
+        <variable
+            name="handler"
+            type="com.example.st_task_1_views.handlers.PostHandler" />
     </data>
 
     <FrameLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        tools:context=".UserScreen">
+        tools:context=".PostScreenView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/userScreen_cardView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/padding_medium"
                 android:layout_marginBottom="@dimen/padding_large_2"
+                app:cardBackgroundColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -55,7 +61,7 @@
                             android:layout_gravity="center"
                             android:text="@{post.username}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_small" />
+                            android:textSize="@dimen/text_standard" />
                     </LinearLayout>
 
                     <TextView
@@ -65,31 +71,61 @@
                         android:layout_marginVertical="@dimen/padding_small"
                         android:text="@{post.title}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_standard" />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/padding_large"
+                            android:text="@{post.description}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_standard"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/likeButton"
+                            android:layout_width="@dimen/heart_size"
+                            android:layout_height="@dimen/heart_size"
+                            android:layout_gravity="end"
+                            android:layout_marginHorizontal="@dimen/padding_small"
+                            android:layout_marginBottom="@dimen/padding_mini_2"
+                            android:contentDescription="@string/heart_icon_description"
+                            android:src='@{post.isLiked ? @drawable/favorite_filled : @drawable/favorite}'
+                            android:onClick="@{() -> handler.onLikeClicked(post)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/padding_large"
-                        android:text="@{post.description}"
+                        android:layout_marginStart="@dimen/padding_large"
+                        android:layout_marginTop="@dimen/padding_small"
+                        android:text="@string/comments"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_small"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="@dimen/text_comment"
+                        android:textStyle="bold" />
 
-                    <androidx.fragment.app.FragmentContainerView
-                        android:name="com.example.st_task_1_views.CommentsSection"
-                        android:id="@+id/fragmentComments"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-                    </androidx.fragment.app.FragmentContainerView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/commentsRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/padding_large"
+                        android:layout_marginTop="@dimen/padding_medium"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

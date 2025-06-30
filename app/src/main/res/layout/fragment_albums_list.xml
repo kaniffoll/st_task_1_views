@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".PostsListView">
-
+    tools:context=".AlbumsListView">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postsRecyclerView"
+        android:id="@+id/albumsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
