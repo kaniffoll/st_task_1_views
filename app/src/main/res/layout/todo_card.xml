@@ -2,13 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="album"
-            type="com.example.st_task_1_views.data.dataclasses.Album" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,32 +10,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/padding_medium"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardElevation="0dp"
-            app:cardPreventCornerOverlap="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingVertical="@dimen/padding_mini_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/padding_medium"
+                android:background="@drawable/bg_card"
                 android:paddingHorizontal="@dimen/padding_medium"
-                android:background="@drawable/bg_card">
+                android:orientation="horizontal">
 
-                <TextView
-
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/todoCardEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-
-                    android:text="@{album.title}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_small"
+                    android:autofillHints=""
+                    android:hint="@string/todo_hint"
+                    android:inputType="text"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:layout_constraintEnd_toStartOf="@+id/todoCardIcon"
+                    app:layout_constraintHorizontal_weight="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <ImageView
+                    android:id="@+id/todoCardIcon"
+                    android:src="@drawable/check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/todo_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

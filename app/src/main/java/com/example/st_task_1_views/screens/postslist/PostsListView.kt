@@ -1,4 +1,4 @@
-package com.example.st_task_1_views
+package com.example.st_task_1_views.screens.postslist
 
 import android.graphics.Rect
 import android.os.Bundle
@@ -7,7 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.st_task_1_views.data.adapters.PostsAdapter
+import com.example.st_task_1_views.R
+import com.example.st_task_1_views.adapters.postslist.PostsAdapter
 import com.example.st_task_1_views.data.postsList
 import com.example.st_task_1_views.handlers.PostHandler
 

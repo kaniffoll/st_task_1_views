@@ -1,4 +1,4 @@
-package com.example.st_task_1_views.data.adapters
+package com.example.st_task_1_views.adapters.albumslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,10 +20,6 @@ class AlbumsAdapter(
                 onAlbumClicked(item)
             }
         }
-    }
-
-    fun updateAlbums(newAlbums: List<Album>) {
-        this.albums = newAlbums
     }
 
     override fun onCreateViewHolder(

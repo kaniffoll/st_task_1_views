@@ -1,33 +1,30 @@
-package com.example.st_task_1_views
+package com.example.st_task_1_views.screens.user
 
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.st_task_1_views.data.adapters.AlbumsAdapter
-import com.example.st_task_1_views.data.albumsList
+import com.example.st_task_1_views.R
+import com.example.st_task_1_views.adapters.userscreen.UserAdapter
 
+class UserScreenView : Fragment(R.layout.fragment_user_screen) {
 
-class AlbumsListView : Fragment(R.layout.fragment_albums_list) {
+    private  lateinit var adapter: UserAdapter
+
+    private val args: UserScreenViewArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.albumsRecyclerView)
+        adapter = UserAdapter()
 
-        val currentList = albumsList
+        val user = args.user
 
-        lateinit var adapter: AlbumsAdapter
+        val recyclerView = view.findViewById<RecyclerView>(R.id.userScreenRecyclerView)
 
-        adapter = AlbumsAdapter(
-            albums = currentList,
-
-            onAlbumClicked = { album ->
-//                findNavController()
-//                    .navigate()
-            },
-        )
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         recyclerView.adapter = adapter
@@ -48,5 +45,7 @@ class AlbumsListView : Fragment(R.layout.fragment_albums_list) {
                 }
             }
         )
+
+        adapter.submitData(user)
     }
 }

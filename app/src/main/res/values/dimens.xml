@@ -25,6 +25,7 @@
     <dimen name="color_header_height">230dp</dimen>
     <dimen name="spacer_header_height">75dp</dimen>
     <dimen name="bottom_nav_bar_height">110dp</dimen>
+    <dimen name="translation_for_avatar">-75dp</dimen>
 
     <!--Font size-->
     <dimen name="text_small_2">17sp</dimen>
@@ -35,4 +36,5 @@
     <dimen name="text_large_2">60sp</dimen>
     <!--Height-->
     <dimen name="top_appbar_height">100dp</dimen>
+    <dimen name="nav_item_selection">60dp</dimen>
 </resources>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Posts"
-        android:name="com.example.st_task_1_views.PostsListView"
+        android:name="com.example.st_task_1_views.screens.postslist.PostsListView"
         android:label=""
         tools:layout="@layout/fragment_posts_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/postScreen"
-        android:name="com.example.st_task_1_views.PostScreenView"
+        android:name="com.example.st_task_1_views.screens.post.PostScreenView"
         android:label="" >
         <action
             android:id="@+id/action_postScreen_to_postsList"
@@ -27,7 +27,70 @@
     </fragment>
     <fragment
         android:id="@+id/Photos"
-        android:name="com.example.st_task_1_views.AlbumsListView"
+        android:name="com.example.st_task_1_views.screens.albumslist.AlbumsListView"
         android:label=""
-        tools:layout="@layout/fragment_albums_list" />
+        tools:layout="@layout/fragment_albums_list" >
+        <action
+            android:id="@+id/action_Photos_to_albumScreenView"
+            app:destination="@id/albumScreen" />
+        <argument
+            android:name="album"
+            app:argType="com.example.st_task_1_views.data.dataclasses.Album" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumScreen"
+        android:name="com.example.st_task_1_views.screens.album.AlbumScreenView"
+        android:label=""
+        tools:layout="@layout/fragment_album_screen" >
+        <action
+            android:id="@+id/action_albumScreenView_to_Photos"
+            app:destination="@id/Photos" />
+        <argument
+            android:name="album"
+            app:argType="com.example.st_task_1_views.data.dataclasses.Album" />
+        <action
+            android:id="@+id/action_albumScreen_to_imagePagerView"
+            app:destination="@id/imagePagerView" />
+    </fragment>
+    <fragment
+        android:id="@+id/Users"
+        android:name="com.example.st_task_1_views.screens.userslist.UsersListView"
+        android:label=""
+        tools:layout="@layout/fragment_users_list" >
+        <action
+            android:id="@+id/action_Users_to_userScreenView"
+            app:destination="@id/userScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/Todos"
+        android:name="com.example.st_task_1_views.screens.todo.TodoScreenView"
+        android:label=""
+        tools:layout="@layout/fragment_todo_screen" />
+    <fragment
+        android:id="@+id/userScreen"
+        android:name="com.example.st_task_1_views.screens.user.UserScreenView"
+        android:label=""
+        tools:layout="@layout/fragment_user_screen" >
+        <action
+            android:id="@+id/action_userScreenView_to_Users"
+            app:destination="@id/Users" />
+        <argument
+            android:name="user"
+            app:argType="com.example.st_task_1_views.data.dataclasses.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePagerView"
+        android:name="com.example.st_task_1_views.screens.imagepager.ImagePagerView"
+        android:label=""
+        tools:layout="@layout/fragment_image_pager" >
+        <action
+            android:id="@+id/action_imagePagerView_to_albumScreen"
+            app:destination="@id/albumScreen" />
+        <argument
+            android:name="album"
+            app:argType="com.example.st_task_1_views.data.dataclasses.Album" />
+        <argument
+            android:name="photoId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.st_task_1_views.utils.RandomColorUtil" />
+
+        <import type="com.example.st_task_1_views.utils.InitialsUtil" />
+
+        <variable
+            name="user"
+            type="com.example.st_task_1_views.data.dataclasses.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/color_header_height"
+            app:cardBackgroundColor="@{RandomColorUtil.getRandomColorByUserName(user.username)}"
+            app:cardCornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="@dimen/border_stroke_2">
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/largeAvatarView"
+            android:layout_width="@dimen/avatar_large"
+            android:layout_height="@dimen/avatar_large"
+            android:layout_marginTop="@dimen/translation_for_avatar"
+            android:background="@drawable/bg_circle"
+            android:gravity="center"
+            android:text="@{InitialsUtil.initials(user.name)}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_large_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:gravity="center"
+            android:text="@{user.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/largeAvatarView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/comments"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_comment"
+            android:textStyle="bold"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

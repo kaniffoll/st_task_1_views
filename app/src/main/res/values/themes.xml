@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.St_task_1_views" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -9,5 +9,6 @@
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/light_gray</item>
+        <item name="android:height">@dimen/nav_item_selection</item>
     </style>
 </resources>

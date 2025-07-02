@@ -1,8 +1,5 @@
 package com.example.st_task_1_views.data.dataclasses
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Post(
     val id: Int,
     val username: String,

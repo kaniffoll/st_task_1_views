@@ -49,7 +49,7 @@
                         android:layout_gravity="center"
                         android:text="@{post.username}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_standard" />
                 </LinearLayout>
 
                 <TextView
@@ -59,7 +59,7 @@
                     android:layout_marginVertical="@dimen/padding_small"
                     android:text="@{post.title}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_small" />
+                    android:textSize="@dimen/text_standard" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                         android:layout_marginHorizontal="@dimen/padding_large"
                         android:text="@{post.description}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_small"
+                        android:textSize="@dimen/text_standard"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

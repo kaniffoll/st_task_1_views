@@ -1,4 +1,4 @@
-package com.example.st_task_1_views.data.adapters
+package com.example.st_task_1_views.adapters.postslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.example.st_task_1_views
+package com.example.st_task_1_views.screens.post
 
 import android.graphics.Rect
 import android.os.Bundle
@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.st_task_1_views.data.adapters.CommentsAdapter
+import com.example.st_task_1_views.R
+import com.example.st_task_1_views.adapters.postscreen.PostAdapter
 import com.example.st_task_1_views.databinding.FragmentPostScreenBinding
 import com.example.st_task_1_views.handlers.PostHandler
 
@@ -30,7 +31,8 @@ class PostScreenView : Fragment() {
             inflater,
             R.layout.fragment_post_screen,
             container,
-            false)
+            false
+        )
 
         return binding.root
     }
@@ -48,7 +50,15 @@ class PostScreenView : Fragment() {
 
         binding.handler = handler
 
-        val adapter = CommentsAdapter(post.comments)
+        lateinit var adapter: PostAdapter
+
+        adapter = PostAdapter(post.comments) {
+            if (adapter.isExpanded()) {
+                adapter.showLess()
+            } else {
+                adapter.showAll()
+            }
+        }
 
         binding.commentsRecyclerView.adapter = adapter
         binding.commentsRecyclerView.layoutManager = LinearLayoutManager(requireContext())

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,16 +10,17 @@
         <variable
             name="post"
             type="com.example.st_task_1_views.data.dataclasses.Post" />
+
         <variable
             name="handler"
             type="com.example.st_task_1_views.handlers.PostHandler" />
     </data>
 
-    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        tools:context=".PostScreenView">
+        tools:context=".screens.post.PostScreenView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -95,8 +97,8 @@
                             android:layout_marginHorizontal="@dimen/padding_small"
                             android:layout_marginBottom="@dimen/padding_mini_2"
                             android:contentDescription="@string/heart_icon_description"
-                            android:src='@{post.isLiked ? @drawable/favorite_filled : @drawable/favorite}'
                             android:onClick="@{() -> handler.onLikeClicked(post)}"
+                            android:src='@{post.isLiked ? @drawable/favorite_filled : @drawable/favorite}'
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -112,15 +114,22 @@
                         android:textSize="@dimen/text_comment"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/commentsRecyclerView"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/padding_large"
-                        android:layout_marginTop="@dimen/padding_medium"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:overScrollMode="never" />
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/commentsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/padding_medium"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:overScrollMode="never"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 

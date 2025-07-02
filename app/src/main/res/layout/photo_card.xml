@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.st_task_1_views.utils.InitialsUtil" />
+
+        <variable
+            name="photo"
+            type="com.example.st_task_1_views.data.dataclasses.Photo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/padding_medium">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/Avatar"
+                        layout="@layout/avatar_view"
+                        android:layout_width="@dimen/avatar_small"
+                        android:layout_height="@dimen/avatar_small"
+                        android:layout_margin="@dimen/padding_small"
+                        app:username="@{InitialsUtil.initials(photo.title)}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@{photo.title}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_small" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/photoCardImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/photo"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:layout_marginVertical="@dimen/padding_medium"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
