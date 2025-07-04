@@ -56,9 +56,9 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    fun imagePagerOpened(opened: Boolean) {
+    fun imagePagerStateChanged(isDisplayed: Boolean) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        if (opened) {
+        if (isDisplayed) {
             toolbar.setBackgroundColor(getColor(R.color.black))
             toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.back_icon_white)
         } else {
@@ -67,6 +67,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavMenu)
-        bottomNav.visibility = if (opened) View.GONE else View.VISIBLE
+        bottomNav.visibility = if (isDisplayed) View.GONE else View.VISIBLE
     }
 }

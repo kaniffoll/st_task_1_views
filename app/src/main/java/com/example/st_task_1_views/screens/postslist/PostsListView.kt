@@ -1,6 +1,5 @@
 package com.example.st_task_1_views.screens.postslist
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.st_task_1_views.R
 import com.example.st_task_1_views.adapters.postslist.PostsAdapter
 import com.example.st_task_1_views.data.postsList
-import com.example.st_task_1_views.handlers.PostHandler
+import com.example.st_task_1_views.extensions.addCustomItemDecoration
 
 class PostsListView : Fragment(R.layout.fragment_posts_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +29,7 @@ class PostsListView : Fragment(R.layout.fragment_posts_list) {
                     .navigate(PostsListViewDirections.actionPostsListToPostScreen(post))
             },
 
-            handler = PostHandler { likedPost ->
+            onPostLiked = { likedPost ->
                 val index = currentList.indexOfFirst { it.id == likedPost.id }
                 if (index != -1) {
                     val updatedPost = currentList[index].copy(isLiked = !currentList[index].isLiked)
@@ -41,7 +40,7 @@ class PostsListView : Fragment(R.layout.fragment_posts_list) {
                     adapter.updatePosts(updatedList)
                     adapter.notifyItemChanged(index)
                 }
-            }
+            },
         )
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -50,18 +49,6 @@ class PostsListView : Fragment(R.layout.fragment_posts_list) {
         recyclerView.setHasFixedSize(true)
 
         val spacing = resources.getDimensionPixelSize(R.dimen.padding_medium)
-
-        recyclerView.addItemDecoration(
-            object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    outRect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    outRect.bottom = spacing
-                }
-            }
-        )
+        recyclerView.addCustomItemDecoration(spacing)
     }
 }

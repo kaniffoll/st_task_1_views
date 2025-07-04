@@ -35,12 +35,12 @@ class ImagePagerView : Fragment(R.layout.fragment_image_pager) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as? MainActivity)?.imagePagerOpened(true)
+        (activity as MainActivity).imagePagerStateChanged(true)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onDestroyView() {
-        (activity as? MainActivity)?.imagePagerOpened(false)
+        (activity as MainActivity).imagePagerStateChanged(false)
         super.onDestroyView()
     }
 }

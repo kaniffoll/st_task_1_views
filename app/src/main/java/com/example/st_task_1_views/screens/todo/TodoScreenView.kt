@@ -1,7 +1,6 @@
 package com.example.st_task_1_views.screens.todo
 
 import android.content.Context
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.st_task_1_views.R
 import com.example.st_task_1_views.adapters.todoslist.TodosAdapter
 import com.example.st_task_1_views.data.dataclasses.Todo
+import com.example.st_task_1_views.extensions.addCustomItemDecoration
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -34,25 +34,14 @@ class TodoScreenView : Fragment(R.layout.fragment_todo_screen) {
         recyclerView.setHasFixedSize(true)
 
         val spacing = resources.getDimensionPixelSize(R.dimen.padding_medium)
-
-        recyclerView.addItemDecoration(
-            object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    outRect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    outRect.bottom = spacing
-                }
-            }
-        )
+        recyclerView.addCustomItemDecoration(spacing)
 
         @Suppress("ClickableViewAccessibility")
         recyclerView.setOnTouchListener { _, _ ->
             requireActivity().currentFocus?.let { focused ->
                 focused.clearFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(focused.windowToken, 0)
             }
             return@setOnTouchListener false
@@ -68,7 +57,8 @@ class TodoScreenView : Fragment(R.layout.fragment_todo_screen) {
         val root = view.findViewById<View>(R.id.todoRootLayout)
         root.setOnClickListener {
             root.requestFocus()
-            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm =
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(root.windowToken, 0)
         }
     }

@@ -8,11 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.st_task_1_views.R
 import com.example.st_task_1_views.data.dataclasses.Comment
-import com.example.st_task_1_views.data.resources.AppSettings.INITIAL_COMMENTS_COUNT
+import com.example.st_task_1_views.resources.AppSettings.INITIAL_COMMENTS_COUNT
 import com.example.st_task_1_views.databinding.ItemCommentBinding
+import com.example.st_task_1_views.utils.ShowLessMoreUtil
 
 class PostAdapter(
-    private val comments: List<Comment>, private val onToggleClick: () -> Unit
+    private val comments: List<Comment>,
+    private val onToggleClick: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -63,11 +65,10 @@ class PostAdapter(
             holder.bind(comment.author, comment.message)
         } else if (holder is ToggleButtonViewHolder) {
             holder.bind(
-                if (isExpanded()) {
-                    holder.itemView.context.getString(R.string.show_less)
-                } else {
-                    holder.itemView.context.getString(R.string.show_more)
-                }
+                ShowLessMoreUtil.getShowLessText(
+                    context = holder.itemView.context,
+                    isExpanded = isExpanded()
+                )
             )
         }
     }

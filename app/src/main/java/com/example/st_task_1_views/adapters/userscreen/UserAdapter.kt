@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.st_task_1_views.R
 import com.example.st_task_1_views.data.dataclasses.Comment
 import com.example.st_task_1_views.data.dataclasses.User
-import com.example.st_task_1_views.data.resources.AppSettings.INITIAL_COMMENTS_COUNT
+import com.example.st_task_1_views.resources.AppSettings.INITIAL_COMMENTS_COUNT
 import com.example.st_task_1_views.databinding.ItemCommentBinding
 import com.example.st_task_1_views.databinding.UserHeaderBinding
+import com.example.st_task_1_views.utils.ShowLessMoreUtil
 
 class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -65,6 +66,7 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val binding = UserHeaderBinding.inflate(inflater, parent, false)
                 HeaderViewHolder(binding)
             }
+
             VIEW_TYPE_BUTTON -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_toggle_button, parent, false)
@@ -77,6 +79,7 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     submitData(currentUser!!)
                 }
             }
+
             else -> {
                 val binding = ItemCommentBinding.inflate(inflater, parent, false)
                 CommentViewHolder(binding)
@@ -91,13 +94,10 @@ class UserAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val comment = item.comment
                 (holder as CommentViewHolder).bind(comment.author, comment.message)
             }
+
             is UserScreenItem.ToggleButton -> {
                 (holder as ToggleButtonViewHolder).bind(
-                    if (isExpanded) {
-                        holder.itemView.context.getString(R.string.show_less)
-                    } else {
-                        holder.itemView.context.getString(R.string.show_more)
-                    }
+                    ShowLessMoreUtil.getShowLessText(holder.itemView.context, isExpanded)
                 )
             }
         }

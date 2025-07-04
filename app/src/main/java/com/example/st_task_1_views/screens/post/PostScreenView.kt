@@ -1,19 +1,18 @@
 package com.example.st_task_1_views.screens.post
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.st_task_1_views.R
 import com.example.st_task_1_views.adapters.postscreen.PostAdapter
 import com.example.st_task_1_views.databinding.FragmentPostScreenBinding
-import com.example.st_task_1_views.handlers.PostHandler
+import com.example.st_task_1_views.extensions.addCustomItemDecoration
 
 
 class PostScreenView : Fragment() {
@@ -43,12 +42,11 @@ class PostScreenView : Fragment() {
         val post = args.post
         binding.post = post
 
-        val handler = PostHandler { updatedPost ->
-            updatedPost.isLiked = !updatedPost.isLiked
-            binding.invalidateAll()
+        val likeButton = binding.root.findViewById<ImageView>(R.id.likeButton)
+        likeButton.setOnClickListener {
+            post.isLiked = !post.isLiked
+            binding.post = post
         }
-
-        binding.handler = handler
 
         lateinit var adapter: PostAdapter
 
@@ -64,19 +62,7 @@ class PostScreenView : Fragment() {
         binding.commentsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val spacing = resources.getDimensionPixelSize(R.dimen.padding_medium)
-
-        binding.commentsRecyclerView.addItemDecoration(
-            object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    outRect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    outRect.bottom = spacing
-                }
-            }
-        )
+        binding.commentsRecyclerView.addCustomItemDecoration(spacing)
     }
 
     override fun onDestroyView() {

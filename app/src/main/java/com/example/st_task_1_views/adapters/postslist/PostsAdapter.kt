@@ -1,16 +1,16 @@
 package com.example.st_task_1_views.adapters.postslist
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.st_task_1_views.data.dataclasses.Post
 import com.example.st_task_1_views.databinding.PostCardBinding
-import com.example.st_task_1_views.handlers.PostHandler
 
 class PostsAdapter(
     private var posts: List<Post>,
     private val onPostClicked: (Post) -> Unit,
-    private val handler: PostHandler
+    private val onPostLiked: (Post) -> Unit,
 ) : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
     inner class PostViewHolder(
@@ -18,7 +18,9 @@ class PostsAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Post) {
             binding.post = item
-            binding.handler = handler
+            binding.postCardLikeButton.setOnClickListener {
+                onPostLiked(item)
+            }
             binding.root.setOnClickListener {
                 onPostClicked(item)
             }
@@ -26,6 +28,7 @@ class PostsAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updatePosts(newPosts: List<Post>) {
         this.posts = newPosts
     }
